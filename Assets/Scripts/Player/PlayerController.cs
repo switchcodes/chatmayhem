@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -28,8 +29,20 @@ namespace Player
 
         // This is horrible, but for some reason colliders are not fully established when update starts...
         private bool _active;
+
+        private TrailRenderer trailRenderer;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() => _active = true;
+
+        private void Start()
+        {
+            trailRenderer = GetComponentInChildren<TrailRenderer>();
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = false;
+            }
+           
+        }
 
         private void Update()
         {
@@ -393,9 +406,14 @@ namespace Player
         private void CalculateDash()
         {
             currentDashTime -= Time.deltaTime;
-            if (currentDashTime <= 0)
+            if (currentlyDashing && currentDashTime <= 0)
             {
                 currentlyDashing = false;
+                if (trailRenderer != null)
+                {
+                    trailRenderer.enabled = false;
+                }
+               
             }
             if (Grounded)
             {
@@ -408,6 +426,10 @@ namespace Player
             Debug.Log("start dashing");
             currentDashTime = maxDashTime;
             currentlyDashing = true;
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = true;
+            }
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
             Vector3 dir = (worldPos - transform.position).normalized * dashPower;
             _currentHorizontalSpeed = dir.x;
