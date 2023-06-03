@@ -30,8 +30,21 @@ namespace Player
 
         // This is horrible, but for some reason colliders are not fully established when update starts...
         private bool _active;
+        
+        private TrailRenderer trailRenderer;
+        public GameObject fireBall;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() => _active = true;
+
+        private void Start()
+        {
+            trailRenderer = GetComponentInChildren<TrailRenderer>();
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = false;
+            }
+           
+        }
 
         private void Update()
         {
@@ -42,12 +55,16 @@ namespace Player
             _lastPosition = position;
 
             RunCollisionChecks();
-
-
-            CalculateWalk(); // Horizontal movement
-            CalculateJumpApex(); // Affects fall speed, so calculate before gravity
-            CalculateGravity(); // Vertical movement
-            CalculateJump(); // Possibly overrides vertical
+            
+            if (!currentlyDashing)
+            {
+                CalculateWalk(); // Horizontal movement
+                CalculateJumpApex(); // Affects fall speed, so calculate before gravity
+                CalculateGravity(); // Vertical movement
+                CalculateJump(); // Possibly overrides vertical
+            }
+            CalculateDash();
+            Fire();
 
             MoveCharacter(); // Actually perform the axis movement
 
@@ -146,7 +163,14 @@ namespace Player
             {
                 _lastJumpPressed = Time.time;
             }
-
+            Input = frameInput;
+        }
+        
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            var frameInput = Input;
+            frameInput.DashUp = context.ReadValueAsButton();
+            Debug.Log(frameInput.DashUp);
             Input = frameInput;
         }
 
@@ -155,6 +179,14 @@ namespace Player
             var frameInput = Input;
             frameInput.Sprint = context.ReadValueAsButton();
             Debug.Log(frameInput.Sprint);
+            Input = frameInput;
+        }
+        
+        public void OnFire(InputAction.CallbackContext context)
+        {
+            var frameInput = Input;
+            frameInput.FireDown = context.ReadValueAsButton();
+            Debug.Log(frameInput.FireDown);
             Input = frameInput;
         }
 
@@ -383,6 +415,67 @@ namespace Player
         }
 
         #endregion
+        
+        [Header("DASH")] 
+        [SerializeField]private float dashPower = 3f;
+
+        private bool currentlyDashing=false;
+
+        private bool dashedAlready = false;
+        private float currentDashTime = 1f;
+        [SerializeField]private float maxDashTime = 1f;
+        private void CalculateDash()
+        {
+            currentDashTime -= Time.deltaTime;
+            if (currentlyDashing && currentDashTime <= 0)
+            {
+                currentlyDashing = false;
+                if (trailRenderer != null)
+                {
+                    trailRenderer.enabled = false;
+                }
+            }
+            if (Grounded)
+            {
+                dashedAlready = false;
+            }
+            if (dashedAlready || !Input.DashUp)
+            {
+                return;
+            }
+            Debug.Log("start dashing");
+            currentDashTime = maxDashTime;
+            currentlyDashing = true;
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = true;
+            }
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+            Vector3 dir = (worldPos - transform.position).normalized * dashPower;
+            _currentHorizontalSpeed = dir.x;
+            _currentVerticalSpeed = dir.y;
+            Debug.Log(dir);
+            dashedAlready = true;
+        }
+        
+        [Header("FIRE")] 
+        [SerializeField]private float fireBallSpeed = 5f;
+
+        [SerializeField] private float fireBallMaxCooldown = 0.5f;
+        private float fireBallCurrentCooldown;
+        private void Fire()
+        {
+            fireBallCurrentCooldown -= Time.deltaTime;
+            if (!Input.FireDown || fireBallCurrentCooldown>0)
+            {
+                return;
+            }
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+            Vector3 dir = (worldPos - transform.position).normalized;
+            GameObject ball= GameObject.Instantiate(fireBall, transform.position, Quaternion.identity);
+            ball.GetComponent<FireBall>().ShootFireBall(dir, fireBallSpeed);
+            fireBallCurrentCooldown = fireBallMaxCooldown;
+        }
 
         #region Move
 
