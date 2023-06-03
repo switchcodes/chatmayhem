@@ -40,13 +40,15 @@ namespace Player
             _lastPosition = position;
 
             RunCollisionChecks();
-
-
-            CalculateWalk(); // Horizontal movement
-            CalculateJumpApex(); // Affects fall speed, so calculate before gravity
-            CalculateGravity(); // Vertical movement
-            CalculateJump(); // Possibly overrides vertical
-
+            
+            if (!currentlyDashing)
+            {
+                CalculateWalk(); // Horizontal movement
+                CalculateJumpApex(); // Affects fall speed, so calculate before gravity
+                CalculateGravity(); // Vertical movement
+                CalculateJump(); // Possibly overrides vertical
+            }
+            CalculateDash();
             MoveCharacter(); // Actually perform the axis movement
 
             UpdateAnimator();
@@ -135,6 +137,14 @@ namespace Player
                 _lastJumpPressed = Time.time;
             }
 
+            Input = frameInput;
+        }
+        
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            var frameInput = Input;
+            frameInput.DashUp = context.ReadValueAsButton();
+            Debug.Log(frameInput.DashUp);
             Input = frameInput;
         }
 
@@ -372,6 +382,40 @@ namespace Player
 
         #endregion
 
+        [Header("DASH")] 
+        [SerializeField]private float dashPower = 3f;
+
+        private bool currentlyDashing=false;
+
+        private bool dashedAlready = false;
+        private float currentDashTime = 1f;
+        [SerializeField]private float maxDashTime = 1f;
+        private void CalculateDash()
+        {
+            currentDashTime -= Time.deltaTime;
+            if (currentDashTime <= 0)
+            {
+                currentlyDashing = false;
+            }
+            if (Grounded)
+            {
+                dashedAlready = false;
+            }
+            if (dashedAlready || !Input.DashUp)
+            {
+                return;
+            }
+            Debug.Log("start dashing");
+            currentDashTime = maxDashTime;
+            currentlyDashing = true;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+            Vector3 dir = (worldPos - transform.position).normalized * dashPower;
+            _currentHorizontalSpeed = dir.x;
+            _currentVerticalSpeed = dir.y;
+            Debug.Log(dir);
+            dashedAlready = true;
+        }
+        
         #region Move
 
         [Header("MOVE")]
