@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<Health>().GetDamaged();
+        }else if (other.gameObject.tag == "Fire")
+        {
+            gameObject.SetActive(false);
         }
     }
 }
