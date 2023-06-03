@@ -426,6 +426,7 @@ namespace Player
         private bool dashedAlready = false;
         private float currentDashTime = 1f;
         [SerializeField]private float maxDashTime = 1f;
+        public bool infiniteDash = false;
         private void CalculateDash()
         {
             currentDashTime -= Time.deltaTime;
@@ -441,7 +442,7 @@ namespace Player
             {
                 dashedAlready = false;
             }
-            if (dashedAlready || !Input.DashUp)
+            if ((!infiniteDash && dashedAlready) || !Input.DashUp)
             {
                 return;
             }
