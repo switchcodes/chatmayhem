@@ -134,6 +134,8 @@ namespace Player
                     break;
                 }
             }
+            
+            animator.SetBool("IsDashing", currentlyDashing);
 
             animator.SetBool("OnGround", grounded);
             animator.SetBool("IsWalking", walking);
@@ -462,6 +464,7 @@ namespace Player
         [SerializeField]private float fireBallSpeed = 5f;
 
         [SerializeField] private float fireBallMaxCooldown = 0.5f;
+        [SerializeField] private Transform fireSpawnPoint;
         private float fireBallCurrentCooldown;
         private void Fire()
         {
@@ -470,11 +473,16 @@ namespace Player
             {
                 return;
             }
+            animator.SetTrigger("Fire");
+            fireBallCurrentCooldown = fireBallMaxCooldown;
+        }
+
+        public void FirePhase2()
+        {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
             Vector3 dir = (worldPos - transform.position).normalized;
-            GameObject ball= GameObject.Instantiate(fireBall, transform.position, Quaternion.identity);
+            GameObject ball= GameObject.Instantiate(fireBall, fireSpawnPoint.position, Quaternion.identity);
             ball.GetComponent<FireBall>().ShootFireBall(dir, fireBallSpeed);
-            fireBallCurrentCooldown = fireBallMaxCooldown;
         }
 
         #region Move

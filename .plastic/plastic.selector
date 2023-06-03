@@ -1,4 +1,0 @@
-repository "ChatMayhem@derfl007@cloud"
-  path "/"
-    br "/main"
-    co "/main"
