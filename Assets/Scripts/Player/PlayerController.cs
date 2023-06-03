@@ -23,6 +23,8 @@ namespace Player
         public Vector3 RawMovement { get; private set; }
         public bool Grounded => _colDown;
 
+        public GameObject playerModel;
+
         private Vector3 _lastPosition;
         private float _currentHorizontalSpeed, _currentVerticalSpeed;
 
@@ -57,6 +59,7 @@ namespace Player
         private void UpdateAnimator()
         {
             var grounded = false;
+            var walking = false;
             switch (_currentVerticalSpeed)
             {
                 case > 0:
@@ -83,31 +86,40 @@ namespace Player
                     break;
             }
 
-            Debug.Log(GetComponentsInChildren<SpriteRenderer>().Length);
-            
             switch (_currentHorizontalSpeed)
             {
                 case > 0:
                 {
-                    foreach (var spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
+                    if (playerModel.transform.localScale.x < 0)
                     {
-                        spriteRenderer.flipX = false;
+                        var scale = playerModel.transform.localScale;
+                        scale.x *= -1;
+                        playerModel.transform.localScale = scale;
                     }
 
+                    walking = true;
                     break;
                 }
                 case < 0:
                 {
-                    foreach (var spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
+                    if (playerModel.transform.localScale.x > 0)
                     {
-                        spriteRenderer.flipX = true;
+                        var scale = playerModel.transform.localScale;
+                        scale.x *= -1;
+                        playerModel.transform.localScale = scale;
                     }
-
+                    walking = true;
+                    break;
+                }
+                case 0:
+                {
+                    walking = false;
                     break;
                 }
             }
 
             animator.SetBool("OnGround", grounded);
+            animator.SetBool("IsWalking", walking);
         }
 
         #endregion
