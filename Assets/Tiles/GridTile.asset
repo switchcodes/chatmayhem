@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: GroundTile
+  m_Name: GridTile
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 0}
-  m_DefaultGameObject: {fileID: 2730062817102506053, guid: 3c91bdec667fe0a458b18c191cc5f0f9, type: 3}
+  m_DefaultGameObject: {fileID: 2372361964030664057, guid: 264a5114657fd6d4b94ab3a38c4f1929, type: 3}
   m_DefaultColliderType: 2
   m_TilingRules: []
