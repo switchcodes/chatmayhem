@@ -31,6 +31,7 @@ namespace Player
         private bool _active;
 
         private TrailRenderer trailRenderer;
+        public GameObject fireBall;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() => _active = true;
 
@@ -62,6 +63,7 @@ namespace Player
                 CalculateJump(); // Possibly overrides vertical
             }
             CalculateDash();
+            Fire();
             MoveCharacter(); // Actually perform the axis movement
 
             UpdateAnimator();
@@ -166,6 +168,14 @@ namespace Player
             var frameInput = Input;
             frameInput.Sprint = context.ReadValueAsButton();
             Debug.Log(frameInput.Sprint);
+            Input = frameInput;
+        }
+        
+        public void OnFire(InputAction.CallbackContext context)
+        {
+            var frameInput = Input;
+            frameInput.FireDown = context.ReadValueAsButton();
+            Debug.Log(frameInput.FireDown);
             Input = frameInput;
         }
 
@@ -436,6 +446,25 @@ namespace Player
             _currentVerticalSpeed = dir.y;
             Debug.Log(dir);
             dashedAlready = true;
+        }
+
+        [Header("FIRE")] 
+        [SerializeField]private float fireBallSpeed = 5f;
+
+        [SerializeField] private float fireBallMaxCooldown = 0.5f;
+        private float fireBallCurrentCooldown;
+        private void Fire()
+        {
+            fireBallCurrentCooldown -= Time.deltaTime;
+            if (!Input.FireDown || fireBallCurrentCooldown>0)
+            {
+                return;
+            }
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+            Vector3 dir = (worldPos - transform.position).normalized;
+            GameObject ball= GameObject.Instantiate(fireBall, transform.position, Quaternion.identity);
+            ball.GetComponent<FireBall>().ShootFireBall(dir, fireBallSpeed);
+            fireBallCurrentCooldown = fireBallMaxCooldown;
         }
         
         #region Move

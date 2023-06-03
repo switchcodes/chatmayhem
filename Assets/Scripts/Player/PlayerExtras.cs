@@ -7,6 +7,7 @@ namespace Player {
 		public bool JumpDown;
 		public bool JumpUp;
 		public bool DashUp;
+		public bool FireDown;
 	}
 
 	public interface IPlayerController {
