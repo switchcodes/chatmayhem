@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a5367fa376b5eda418c763e95ad95acd
+guid: fba8e5cc36e538a4c87958eb0ab86172
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,11 +123,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pixilart_Sprite_Sheet_2
+      name: Pixilart_Sprite_Sheet_2_0
       rect:
         serializedVersion: 2
         x: 68
-        y: 88
+        y: 58
         width: 174
         height: 194
       alignment: 0
@@ -137,18 +137,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 759d364374fdaf64dbb8d0428b220b04
-      internalID: 949035061
+      spriteID: c97eced69574fb744949c5dfb0b90e9d
+      internalID: 373795690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixilart_Sprite_Sheet_3
+      name: Pixilart_Sprite_Sheet_2_1
       rect:
         serializedVersion: 2
         x: 388
-        y: 88
+        y: 58
         width: 174
         height: 194
       alignment: 0
@@ -158,18 +158,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 671ccfacf5192c545b9905f9bda0e416
-      internalID: 1166728675
+      spriteID: 55d8103f095a2204cbf26d89a27a4c12
+      internalID: 628787735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixilart_Sprite_Sheet_4
+      name: Pixilart_Sprite_Sheet_2_2
       rect:
         serializedVersion: 2
         x: 708
-        y: 88
+        y: 58
         width: 174
         height: 194
       alignment: 0
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5784c06816702ec43825cb4989c08cad
-      internalID: 1588728879
+      spriteID: d4a2d1d57ec083d4bacf47a5e18d10b2
+      internalID: 562923623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixilart_Sprite_Sheet_5
+      name: Pixilart_Sprite_Sheet_2_3
       rect:
         serializedVersion: 2
         x: 1028
-        y: 88
+        y: 58
         width: 174
-        height: 194
+        height: 204
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc148d80914a58f41b43d499ee241b0a
-      internalID: 326817997
+      spriteID: a1a4ed35e7f2d3849b8269e652005488
+      internalID: -1623107740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixilart_Sprite_Sheet_6
+      name: Pixilart_Sprite_Sheet_2_4
       rect:
         serializedVersion: 2
-        x: 1349
-        y: 89
-        width: 174
-        height: 193
+        x: 1338
+        y: 58
+        width: 184
+        height: 204
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,18 +221,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7945357ab0d145c409d95f4996daed3c
-      internalID: -1815857639
+      spriteID: c7f1a248c2b5bdc40a89684b5364bb90
+      internalID: -9653899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixilart_Sprite_Sheet_7
+      name: Pixilart_Sprite_Sheet_2_5
       rect:
         serializedVersion: 2
         x: 1668
-        y: 88
+        y: 58
         width: 174
         height: 194
       alignment: 0
@@ -242,19 +242,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3df527f2258fa0e4b9d53ce5f373b440
-      internalID: 1996824525
+      spriteID: f0034fbaba224444facf371fe43d9a31
+      internalID: -1295118091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixilart_Sprite_Sheet_8
+      name: Pixilart_Sprite_Sheet_2_6
       rect:
         serializedVersion: 2
         x: 1988
-        y: 88
-        width: 174
+        y: 58
+        width: 184
         height: 194
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -263,39 +263,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec450e1c5046a3b45bd9033620700aaa
-      internalID: 2045643128
+      spriteID: 16f38bf3552a3824283cd1d927bb3731
+      internalID: 286679776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pixilart_Sprite_Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 2028
-        y: 78
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b69739531c757e64abbaf10a3077e3e6
-      internalID: -1623348225
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pixilart_Sprite_Sheet_10
+      name: Pixilart_Sprite_Sheet_2_7
       rect:
         serializedVersion: 2
         x: 2308
-        y: 88
+        y: 58
         width: 174
         height: 194
       alignment: 0
@@ -305,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc0cf9dbc98fad44d97435e69a7aadec
-      internalID: 1179110741
+      spriteID: adf7128c7ed204140b70c2277c5624c8
+      internalID: -8176374
       vertices: []
       indices: 
       edges: []
@@ -322,19 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Pixilart_Sprite_Sheet_0: 831700545
-      Pixilart_Sprite_Sheet_1: -1706400045
-      Pixilart_Sprite_Sheet_10: 1179110741
-      Pixilart_Sprite_Sheet_11: 60419973
-      Pixilart_Sprite_Sheet_12: 319076772
-      Pixilart_Sprite_Sheet_2: 949035061
-      Pixilart_Sprite_Sheet_3: 1166728675
-      Pixilart_Sprite_Sheet_4: 1588728879
-      Pixilart_Sprite_Sheet_5: 326817997
-      Pixilart_Sprite_Sheet_6: -1815857639
-      Pixilart_Sprite_Sheet_7: 1996824525
-      Pixilart_Sprite_Sheet_8: 2045643128
-      Pixilart_Sprite_Sheet_9: -1623348225
+      Pixilart_Sprite_Sheet_2_0: 373795690
+      Pixilart_Sprite_Sheet_2_1: 628787735
+      Pixilart_Sprite_Sheet_2_2: 562923623
+      Pixilart_Sprite_Sheet_2_3: -1623107740
+      Pixilart_Sprite_Sheet_2_4: -9653899
+      Pixilart_Sprite_Sheet_2_5: -1295118091
+      Pixilart_Sprite_Sheet_2_6: 286679776
+      Pixilart_Sprite_Sheet_2_7: -8176374
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
