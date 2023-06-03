@@ -38,6 +38,7 @@ namespace Player
 
         private void Start()
         {
+            _camera = Camera.main;
             trailRenderer = GetComponentInChildren<TrailRenderer>();
             if (trailRenderer != null)
             {
@@ -452,8 +453,12 @@ namespace Player
             {
                 trailRenderer.enabled = true;
             }
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-            Vector3 dir = (worldPos - transform.position).normalized * dashPower;
+
+            // project mouse pointer onto player plane
+            Vector3 mousePos = Mouse.current.position.value;
+            mousePos.z = _camera.nearClipPlane;
+            var worldPos = _camera.ScreenToWorldPoint(mousePos);
+            var dir = (worldPos - transform.position).normalized * dashPower;
             _currentHorizontalSpeed = dir.x;
             _currentVerticalSpeed = dir.y;
             Debug.Log(dir);
@@ -490,6 +495,8 @@ namespace Player
         [Header("MOVE")]
         [SerializeField, Tooltip("Raising this value increases collision accuracy at the cost of performance.")]
         private int freeColliderIterations = 10;
+
+        private Camera _camera;
 
         // We cast our bounds before moving to avoid future collisions
         private void MoveCharacter()

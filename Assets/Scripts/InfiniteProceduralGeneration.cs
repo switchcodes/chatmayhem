@@ -18,6 +18,14 @@ public class InfiniteProceduralGeneration : MonoBehaviour
     [SerializeField] private GameObject[] enemies;
 
     [SerializeField] private int enemySpawnHeight;
+    
+    [SerializeField] private int enemySpawnChance = 80;
+    
+    [SerializeField] private int pickupSpawnChance = 10;
+    
+    [SerializeField] private GameObject[] pickups;
+
+    [SerializeField] private GameObject backgroundPrefab;
 
     private int[,] _map;
 
@@ -25,9 +33,19 @@ public class InfiniteProceduralGeneration : MonoBehaviour
 
     private int _currentTilemap = 0;
 
+    private float _backgroundWidth = 39.09f;
+    
+    private GameObject[] _currentBackgrounds = new GameObject[5];
     // Start is called before the first frame update
     private void Start()
     {
+        var currentX = player.position.x;
+        var rotation = Quaternion.Euler(0, -90, 0);
+        _currentBackgrounds[0] = Instantiate(backgroundPrefab, new Vector3(currentX, 0, 0), rotation);
+        _currentBackgrounds[1] = Instantiate(backgroundPrefab, new Vector3(currentX + _backgroundWidth, 0, 0), rotation);
+        _currentBackgrounds[2] = Instantiate(backgroundPrefab, new Vector3(currentX + (_backgroundWidth * 2), 0, 0), rotation);
+        _currentBackgrounds[3] = Instantiate(backgroundPrefab, new Vector3(currentX - _backgroundWidth, 0, 0), rotation);
+        _currentBackgrounds[4] = Instantiate(backgroundPrefab, new Vector3(currentX - (_backgroundWidth * 2), 0, 0), rotation);
         seed = Random.Range(-1000, 1000);
         Generation();
     }
@@ -90,11 +108,27 @@ public class InfiniteProceduralGeneration : MonoBehaviour
                 Mathf.RoundToInt(Mathf.PerlinNoise(seed, (player.position.x + x) / smoothness) * (height - 5));
             if (perlinHeight > enemySpawnHeight)
             {
-                // spawn enemies
-                var enemy = enemies[Random.Range(0, enemies.Length)];
-                var enemyPos = new Vector3((player.position.x + x) - width / 2, perlinHeight + Random.Range(1, 10), 0);
-                var enemyObject = Instantiate(enemy, enemyPos, Quaternion.identity);
-                enemyObject.GetComponent<AIChase>().player = player;
+                var spawn = Random.Range(0, 100);
+                if (spawn < enemySpawnChance)
+                {
+                    // spawn enemies
+                    var enemy = enemies[Random.Range(0, enemies.Length)];
+                    var enemyPos = new Vector3((player.position.x + x) - width / 2, perlinHeight + Random.Range(1, 10), 0);
+                    var enemyObject = Instantiate(enemy, enemyPos, Quaternion.identity);
+                    enemyObject.GetComponent<AIChase>().player = player;
+                }
+                
+            }
+            else
+            {
+                var spawn = Random.Range(0, 100);
+                if (!(spawn > pickupSpawnChance))
+                {
+                    // spawn pickups
+                    var pickup = pickups[Random.Range(0, pickups.Length)];
+                    var pickupPos = new Vector3((player.position.x + x) - width / 2, perlinHeight + 2, 0);
+                    Instantiate(pickup, pickupPos, Quaternion.identity);
+                }
             }
 
             for (var y = 0; y < perlinHeight; y++)
@@ -110,13 +144,33 @@ public class InfiniteProceduralGeneration : MonoBehaviour
 
     private void RenderMap(int[,] map, Tilemap tilemap, TileBase groundTileBase)
     {
+        var currentPos = player.position;
+        var currentX = Mathf.FloorToInt(currentPos.x);
+        
+        // foreach (var currentBackground in _currentBackgrounds)
+        // {
+        //     Destroy(currentBackground);
+        // }
+        //
+        // var rotation = Quaternion.Euler(0, -90, 0);
+        // _currentBackgrounds[0] = Instantiate(backgroundPrefab, new Vector3(currentX, 0, 0), rotation);
+        // _currentBackgrounds[1] = Instantiate(backgroundPrefab, new Vector3(currentX + _backgroundWidth, 0, 0), rotation);
+        // _currentBackgrounds[2] = Instantiate(backgroundPrefab, new Vector3(currentX + (_backgroundWidth * 2), 0, 0), rotation);
+        // _currentBackgrounds[3] = Instantiate(backgroundPrefab, new Vector3(currentX - _backgroundWidth, 0, 0), rotation);
+        // _currentBackgrounds[4] = Instantiate(backgroundPrefab, new Vector3(currentX - (_backgroundWidth * 2), 0, 0), rotation);
+        
+        foreach (var currentBackground in _currentBackgrounds)
+        {
+            var current = currentBackground.transform.position;
+            current.x += _lastPlayerX - currentX;
+            currentBackground.transform.position = current;
+        }
+
         for (var x = 0; x < width; x++)
         {
             for (var y = 0; y < height; y++)
             {
                 if (map[x, y] != 1) continue;
-                var currentPos = player.position;
-                var currentX = Mathf.FloorToInt(currentPos.x);
                 tilemap.SetTile(new Vector3Int((currentX - width / 2) + x, y, 0), groundTileBase);
             }
         }
