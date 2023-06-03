@@ -27,6 +27,16 @@ namespace Player
             }
         }
 
+        public void Heal()
+        {
+            currentHealth++;
+            if (currentHealth >= 4)
+            {
+                currentHealth = 4;
+            }
+            bar.SetHealthBar(currentHealth);
+        }
+
         private void Update()
         {
             if (currentInvincibleTIme > 0)
