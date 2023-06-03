@@ -536,5 +536,10 @@ namespace Player
         }
 
         #endregion
+        
+        public void IncreaseSpeed()
+        {
+            dashPower += 2;
+        }
     }
 }
