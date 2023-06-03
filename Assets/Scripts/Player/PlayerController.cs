@@ -501,7 +501,7 @@ namespace Player
 
             // check furthest movement. If nothing hit, move and don't do extra checks
             var hit = Physics2D.OverlapBox(furthestPoint, characterBounds.size, 0, groundLayer);
-            if (!hit)
+            if (!hit || currentlyDashing)
             {
                 transform.position += move;
                 return;
