@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 5139716790269358322}
   - component: {fileID: 3018052020390713407}
   - component: {fileID: 5078456384111441831}
+  - component: {fileID: 1064321443606685654}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +67,7 @@ Transform:
   - {fileID: 7058443615129283573}
   - {fileID: 4210955448073260226}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5139716790269358322
 MonoBehaviour:
@@ -107,6 +108,7 @@ MonoBehaviour:
   jumpEndEarlyGravityModifier: 3
   dashPower: 40
   maxDashTime: 0.2
+  infiniteDash: 0
   fireBallSpeed: 30
   fireBallMaxCooldown: 0.5
   fireSpawnPoint: {fileID: 4210955448073260226}
@@ -140,7 +142,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -284,6 +286,22 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1064321443606685654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838865456141704019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f052a193594d4a5ab2bc2539cfd3a400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 4
+  bar: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  maxInvincibleTime: 1
 --- !u!1 &7409945183146897344
 GameObject:
   m_ObjectHideFlags: 0
