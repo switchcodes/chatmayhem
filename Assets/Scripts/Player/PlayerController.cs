@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,6 +25,7 @@ namespace Player
         public bool Grounded => _colDown;
 
         public GameObject playerModel;
+        public StudioEventEmitter fireballEMitter;
 
         private Vector3 _lastPosition;
         private float _currentHorizontalSpeed, _currentVerticalSpeed;
@@ -38,6 +40,7 @@ namespace Player
 
         private void Start()
         {
+            fireballEMitter = GetComponentInChildren<StudioEventEmitter>();
             trailRenderer = GetComponentInChildren<TrailRenderer>();
             if (trailRenderer != null)
             {
@@ -473,6 +476,11 @@ namespace Player
             if (!Input.FireDown || fireBallCurrentCooldown>0)
             {
                 return;
+            }
+
+            if (fireballEMitter != null)
+            {
+                fireballEMitter.Play();
             }
             animator.SetTrigger("Fire");
             fireBallCurrentCooldown = fireBallMaxCooldown;
