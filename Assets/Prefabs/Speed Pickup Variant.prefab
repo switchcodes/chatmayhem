@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1590174042996390692, guid: 04a0ad25c49d0e347b8350f893592b23, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 542514060db398e468e03524fccab2de, type: 2}
     - target: {fileID: 1918631383100441673, guid: 04a0ad25c49d0e347b8350f893592b23, type: 3}
       propertyPath: m_Name
       value: Speed Pickup Variant
@@ -22,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 949035061, guid: a5367fa376b5eda418c763e95ad95acd, type: 3}
     - target: {fileID: 4441666287734215379, guid: 04a0ad25c49d0e347b8350f893592b23, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4441666287734215379, guid: 04a0ad25c49d0e347b8350f893592b23, type: 3}
       propertyPath: m_LocalPosition.x

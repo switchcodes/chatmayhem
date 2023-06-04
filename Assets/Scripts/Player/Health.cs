@@ -27,9 +27,18 @@ namespace Player
             }
         }
 
+        public void Kill()
+        {
+            Debug.Log("Killed");
+            currentHealth = 0;
+            bar.SetHealthBar(currentHealth);
+            pauseMenu.GameOver();
+        }
+
         public void Heal()
         {
             currentHealth++;
+            Debug.Log("Healing " + currentHealth);
             if (currentHealth >= 4)
             {
                 currentHealth = 4;
