@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AIChase : MonoBehaviour
 {
+
     public Transform player;
     public float speed;
     private float distance;
