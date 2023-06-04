@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{d239fd2f-4292-42c8-b6e0-8ab1d26eda4a}">
+		<property name="assetPath">
+			<value>SFX/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2af02fad-191a-4abc-bc3b-f76a2f88c701}</destination>
+		</relationship>
+	</object>
+</objects>

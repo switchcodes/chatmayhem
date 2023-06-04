@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7557233c-84b4-4cff-aa17-0ea591fa16aa}">
+		<property name="assetPath">
+			<value>MUSIC/Independence_Achieved.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>72.647999999999996</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2af02fad-191a-4abc-bc3b-f76a2f88c701}</destination>
+		</relationship>
+	</object>
+</objects>

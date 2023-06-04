@@ -1,0 +1,340 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7337355792168968889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/GameJam.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/fmod/Build/Desktop/GameJam.bank
+  Name: GameJam
+  StudioPath: bank:/GameJam
+  lastModified: 638213382669197580
+  FileSizes:
+  - Name: Desktop
+    Value: 11955296
+  Exists: 1
+--- !u!114 &-5237225516283131864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/fmod/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638213936713457482
+  FileSizes:
+  - Name: Desktop
+    Value: 1040
+  Exists: 1
+--- !u!114 &-4444869966541237315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Track F long
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Track F long
+  Guid:
+    Data1: -1452527359
+    Data2: 1187807325
+    Data3: 1694626184
+    Data4: -711025742
+  Banks:
+  - {fileID: -7337355792168968889}
+  - {fileID: 5135214434289438571}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 72648
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 9014644570652734422}
+  - {fileID: -5237225516283131864}
+  - {fileID: -7337355792168968889}
+  - {fileID: 5135214434289438571}
+  EditorEvents:
+  - {fileID: 5701249774308510988}
+  - {fileID: 3011907653517705429}
+  - {fileID: 7720125215033529792}
+  - {fileID: 5782297895913673729}
+  - {fileID: 5248106698598372350}
+  - {fileID: 2983660081438793389}
+  - {fileID: -4444869966541237315}
+  - {fileID: 6259505496251324400}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -7337355792168968889}
+  - {fileID: 5135214434289438571}
+  StringsBanks:
+  - {fileID: 9014644570652734422}
+  - {fileID: -5237225516283131864}
+  cacheTime: 638213936713457482
+  cacheVersion: 131603
+--- !u!114 &2983660081438793389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Track B
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Track B
+  Guid:
+    Data1: -82544266
+    Data2: 1302650232
+    Data3: 1373286284
+    Data4: -1453411050
+  Banks:
+  - {fileID: -7337355792168968889}
+  - {fileID: 5135214434289438571}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 164400
+--- !u!114 &3011907653517705429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Track E
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Track E
+  Guid:
+    Data1: 279149960
+    Data2: 1287738117
+    Data3: -733667707
+    Data4: -1639881226
+  Banks:
+  - {fileID: -7337355792168968889}
+  - {fileID: 5135214434289438571}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 95448
+--- !u!114 &5135214434289438571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/fmod/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638213936713377481
+  FileSizes:
+  - Name: Desktop
+    Value: 11981408
+  Exists: 1
+--- !u!114 &5248106698598372350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Track F
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Track F
+  Guid:
+    Data1: 1483764481
+    Data2: 1215763055
+    Data3: 1000738740
+    Data4: 2014203955
+  Banks:
+  - {fileID: -7337355792168968889}
+  - {fileID: 5135214434289438571}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 56520
+--- !u!114 &5701249774308510988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Track D
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Track D
+  Guid:
+    Data1: 2069108481
+    Data2: 1221930730
+    Data3: -651059792
+    Data4: 1768991733
+  Banks:
+  - {fileID: -7337355792168968889}
+  - {fileID: 5135214434289438571}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 209784
+--- !u!114 &5782297895913673729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Track C
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Track C
+  Guid:
+    Data1: 1542659840
+    Data2: 1158235654
+    Data3: 1191755686
+    Data4: 194181039
+  Banks:
+  - {fileID: -7337355792168968889}
+  - {fileID: 5135214434289438571}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 138072
+--- !u!114 &6259505496251324400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/testFGlitch
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/testFGlitch
+  Guid:
+    Data1: -1357080385
+    Data2: 1213837762
+    Data3: 1723557262
+    Data4: -1353447121
+  Banks:
+  - {fileID: 5135214434289438571}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3020
+--- !u!114 &7720125215033529792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Track A
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Track A
+  Guid:
+    Data1: -1243770702
+    Data2: 1208733894
+    Data3: 1611138978
+    Data4: 2083315419
+  Banks:
+  - {fileID: -7337355792168968889}
+  - {fileID: 5135214434289438571}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 119208
+--- !u!114 &9014644570652734422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/GameJam.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/fmod/Build/Desktop/GameJam.strings.bank
+  Name: GameJam.strings
+  StudioPath: bank:/GameJam.strings
+  lastModified: 638213382669237580
+  FileSizes:
+  - Name: Desktop
+    Value: 1032
+  Exists: 1
