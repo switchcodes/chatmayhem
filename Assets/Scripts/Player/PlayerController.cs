@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,6 +37,7 @@ namespace Player
 
         private void Start()
         {
+            _camera = Camera.main;
             trailRenderer = GetComponentInChildren<TrailRenderer>();
             if (trailRenderer != null)
             {
@@ -421,12 +421,12 @@ namespace Player
         [Header("DASH")] 
         [SerializeField]private float dashPower = 3f;
 
-        private bool currentlyDashing=false;
+        private bool currentlyDashing;
 
-        private bool dashedAlready = false;
+        private bool dashedAlready;
         private float currentDashTime = 1f;
         [SerializeField]private float maxDashTime = 1f;
-        public bool infiniteDash = false;
+        public bool infiniteDash;
         private void CalculateDash()
         {
             currentDashTime -= Time.deltaTime;
@@ -453,8 +453,11 @@ namespace Player
             {
                 trailRenderer.enabled = true;
             }
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-            Vector3 dir = (worldPos - transform.position).normalized * dashPower;
+
+            Vector3 mousePos = Mouse.current.position.value;
+            mousePos.z = playerModel.transform.position.z - _camera.transform.position.z;
+            var worldPos = _camera.ScreenToWorldPoint(mousePos);
+            var dir = (worldPos - transform.position).normalized * dashPower;
             _currentHorizontalSpeed = dir.x;
             _currentVerticalSpeed = dir.y;
             Debug.Log(dir);
@@ -480,9 +483,11 @@ namespace Player
 
         public void FirePhase2()
         {
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-            Vector3 dir = (worldPos - transform.position).normalized;
-            GameObject ball= GameObject.Instantiate(fireBall, fireSpawnPoint.position, Quaternion.identity);
+            Vector3 mousePos = Mouse.current.position.value;
+            mousePos.z = playerModel.transform.position.z - _camera.transform.position.z;
+            var worldPos = _camera.ScreenToWorldPoint(mousePos);
+            var dir = (worldPos - transform.position).normalized;
+            var ball= Instantiate(fireBall, fireSpawnPoint.position, Quaternion.identity);
             ball.GetComponent<FireBall>().ShootFireBall(dir, fireBallSpeed);
         }
 
@@ -491,6 +496,8 @@ namespace Player
         [Header("MOVE")]
         [SerializeField, Tooltip("Raising this value increases collision accuracy at the cost of performance.")]
         private int freeColliderIterations = 10;
+
+        private Camera _camera;
 
         // We cast our bounds before moving to avoid future collisions
         private void MoveCharacter()

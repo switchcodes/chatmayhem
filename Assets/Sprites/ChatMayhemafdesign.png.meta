@@ -126,10 +126,10 @@ TextureImporter:
       name: ChatMayhemafdesign_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 129
-        width: 131
-        height: 148
+        x: 42
+        y: 72
+        width: 171
+        height: 203
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: ChatMayhemafdesign_1
       rect:
         serializedVersion: 2
-        x: 192
-        y: 92
-        width: 207
-        height: 189
+        x: 234
+        y: 35
+        width: 239
+        height: 244
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +168,10 @@ TextureImporter:
       name: ChatMayhemafdesign_2
       rect:
         serializedVersion: 2
-        x: 441
-        y: 199
-        width: 45
-        height: 34
+        x: 510
+        y: 171
+        width: 51
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

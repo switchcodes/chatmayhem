@@ -20,10 +20,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Health>().GetDamaged();
-        }else if (other.gameObject.tag == "Fire")
+        }else if (other.gameObject.CompareTag("Fire"))
         {
             gameObject.SetActive(false);
         }

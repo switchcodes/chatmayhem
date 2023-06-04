@@ -104,7 +104,7 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 2
   detectionRange: 10
-  despawnRange: 25
+  despawnRange: 1000
 --- !u!114 &6430691419404183038
 MonoBehaviour:
   m_ObjectHideFlags: 0
