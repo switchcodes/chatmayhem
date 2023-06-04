@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b6aedf8f-fd7c-43cd-a0f7-59051e14e60b}">
+		<property name="assetPath">
+			<value>SFX/beep.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.73142857142857143</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2af02fad-191a-4abc-bc3b-f76a2f88c701}</destination>
+		</relationship>
+	</object>
+</objects>
