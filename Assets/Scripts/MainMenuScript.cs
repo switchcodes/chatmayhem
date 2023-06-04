@@ -8,7 +8,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void OnPlayButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void OnQuitButton()
@@ -18,7 +18,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void OnMayhemButton()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(6);
     }
     // Start is called before the first frame update
     void Start()

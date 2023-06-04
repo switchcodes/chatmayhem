@@ -43,19 +43,6 @@ public class AIChase : MonoBehaviour
         transform.position = Vector2.MoveTowards(position, playerPos + new Vector3(Random.Range(-5, 5), Random.Range(-5, 5)), speed * Time.deltaTime);
     }
 
-    void OnDrawGizmos()
-    {
-        var playerPos = player.position;
-        var position = transform.position;
-        distance = Vector2.Distance(position, playerPos);
-
-        direction = playerPos - position;
-        direction.Normalize();
-        
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(position, despawnRange);
-    }
-
     bool playerOnLeft() { return direction.x < 0; }
     bool playerOnRight() { return direction.x > 0; }
 
