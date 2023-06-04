@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using BossElon;
 
 public class AnimationEvents : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class AnimationEvents : MonoBehaviour
     {
         var parent = transform.parent.gameObject;
         controller = parent.GetComponent<PlayerController>();
+        
     }
 
     // Update is called once per frame
