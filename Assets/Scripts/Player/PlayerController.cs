@@ -23,13 +23,28 @@ namespace Player
         public Vector3 RawMovement { get; private set; }
         public bool Grounded => _colDown;
 
+        public GameObject playerModel;
+
         private Vector3 _lastPosition;
         private float _currentHorizontalSpeed, _currentVerticalSpeed;
 
         // This is horrible, but for some reason colliders are not fully established when update starts...
         private bool _active;
+        
+        private TrailRenderer trailRenderer;
+        public GameObject fireBall;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() => _active = true;
+
+        private void Start()
+        {
+            trailRenderer = GetComponentInChildren<TrailRenderer>();
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = false;
+            }
+           
+        }
 
         private void Update()
         {
@@ -40,12 +55,16 @@ namespace Player
             _lastPosition = position;
 
             RunCollisionChecks();
-
-
-            CalculateWalk(); // Horizontal movement
-            CalculateJumpApex(); // Affects fall speed, so calculate before gravity
-            CalculateGravity(); // Vertical movement
-            CalculateJump(); // Possibly overrides vertical
+            
+            if (!currentlyDashing)
+            {
+                CalculateWalk(); // Horizontal movement
+                CalculateJumpApex(); // Affects fall speed, so calculate before gravity
+                CalculateGravity(); // Vertical movement
+                CalculateJump(); // Possibly overrides vertical
+            }
+            CalculateDash();
+            Fire();
 
             MoveCharacter(); // Actually perform the axis movement
 
@@ -57,6 +76,7 @@ namespace Player
         private void UpdateAnimator()
         {
             var grounded = false;
+            var walking = false;
             switch (_currentVerticalSpeed)
             {
                 case > 0:
@@ -83,31 +103,42 @@ namespace Player
                     break;
             }
 
-            Debug.Log(GetComponentsInChildren<SpriteRenderer>().Length);
-            
             switch (_currentHorizontalSpeed)
             {
                 case > 0:
                 {
-                    foreach (var spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
+                    if (playerModel.transform.localScale.x < 0)
                     {
-                        spriteRenderer.flipX = false;
+                        var scale = playerModel.transform.localScale;
+                        scale.x *= -1;
+                        playerModel.transform.localScale = scale;
                     }
 
+                    walking = true;
                     break;
                 }
                 case < 0:
                 {
-                    foreach (var spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
+                    if (playerModel.transform.localScale.x > 0)
                     {
-                        spriteRenderer.flipX = true;
+                        var scale = playerModel.transform.localScale;
+                        scale.x *= -1;
+                        playerModel.transform.localScale = scale;
                     }
-
+                    walking = true;
+                    break;
+                }
+                case 0:
+                {
+                    walking = false;
                     break;
                 }
             }
+            
+            animator.SetBool("IsDashing", currentlyDashing);
 
             animator.SetBool("OnGround", grounded);
+            animator.SetBool("IsWalking", walking);
         }
 
         #endregion
@@ -134,7 +165,14 @@ namespace Player
             {
                 _lastJumpPressed = Time.time;
             }
-
+            Input = frameInput;
+        }
+        
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            var frameInput = Input;
+            frameInput.DashUp = context.ReadValueAsButton();
+            Debug.Log(frameInput.DashUp);
             Input = frameInput;
         }
 
@@ -143,6 +181,14 @@ namespace Player
             var frameInput = Input;
             frameInput.Sprint = context.ReadValueAsButton();
             Debug.Log(frameInput.Sprint);
+            Input = frameInput;
+        }
+        
+        public void OnFire(InputAction.CallbackContext context)
+        {
+            var frameInput = Input;
+            frameInput.FireDown = context.ReadValueAsButton();
+            Debug.Log(frameInput.FireDown);
             Input = frameInput;
         }
 
@@ -371,6 +417,74 @@ namespace Player
         }
 
         #endregion
+        
+        [Header("DASH")] 
+        [SerializeField]private float dashPower = 3f;
+
+        private bool currentlyDashing=false;
+
+        private bool dashedAlready = false;
+        private float currentDashTime = 1f;
+        [SerializeField]private float maxDashTime = 1f;
+        public bool infiniteDash = false;
+        private void CalculateDash()
+        {
+            currentDashTime -= Time.deltaTime;
+            if (currentlyDashing && currentDashTime <= 0)
+            {
+                currentlyDashing = false;
+                if (trailRenderer != null)
+                {
+                    trailRenderer.enabled = false;
+                }
+            }
+            if (Grounded)
+            {
+                dashedAlready = false;
+            }
+            if ((!infiniteDash && dashedAlready) || !Input.DashUp)
+            {
+                return;
+            }
+            Debug.Log("start dashing");
+            currentDashTime = maxDashTime;
+            currentlyDashing = true;
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = true;
+            }
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+            Vector3 dir = (worldPos - transform.position).normalized * dashPower;
+            _currentHorizontalSpeed = dir.x;
+            _currentVerticalSpeed = dir.y;
+            Debug.Log(dir);
+            dashedAlready = true;
+        }
+        
+        [Header("FIRE")] 
+        [SerializeField]private float fireBallSpeed = 5f;
+
+        [SerializeField] private float fireBallMaxCooldown = 0.5f;
+        [SerializeField] private Transform fireSpawnPoint;
+        private float fireBallCurrentCooldown;
+        private void Fire()
+        {
+            fireBallCurrentCooldown -= Time.deltaTime;
+            if (!Input.FireDown || fireBallCurrentCooldown>0)
+            {
+                return;
+            }
+            animator.SetTrigger("Fire");
+            fireBallCurrentCooldown = fireBallMaxCooldown;
+        }
+
+        public void FirePhase2()
+        {
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+            Vector3 dir = (worldPos - transform.position).normalized;
+            GameObject ball= GameObject.Instantiate(fireBall, fireSpawnPoint.position, Quaternion.identity);
+            ball.GetComponent<FireBall>().ShootFireBall(dir, fireBallSpeed);
+        }
 
         #region Move
 
@@ -388,7 +502,7 @@ namespace Player
 
             // check furthest movement. If nothing hit, move and don't do extra checks
             var hit = Physics2D.OverlapBox(furthestPoint, characterBounds.size, 0, groundLayer);
-            if (!hit)
+            if (!hit || currentlyDashing)
             {
                 transform.position += move;
                 return;
@@ -423,5 +537,10 @@ namespace Player
         }
 
         #endregion
+        
+        public void IncreaseSpeed()
+        {
+            dashPower += 2;
+        }
     }
 }
