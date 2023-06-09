@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638214872351895514
+  lastModified: 638214899571265309
   FileSizes: []
   Exists: 1
 --- !u!114 &-8614555598110595862
@@ -719,7 +719,7 @@ MonoBehaviour:
   Path: Assets/fmod/Build/Desktop/GameJam.strings.bank
   Name: GameJam.strings
   StudioPath: bank:/GameJam.strings
-  lastModified: 638214872337597199
+  lastModified: 638214899561989690
   FileSizes:
   - Name: 
     Value: 1032
@@ -935,7 +935,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -2043927332629290168}
   - {fileID: 1915462684507759953}
-  cacheTime: 638214872352123988
+  cacheTime: 638214899571421516
   cacheVersion: 131603
 --- !u!114 &22678909286808161
 MonoBehaviour:
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   Path: Assets/fmod/Build/Desktop/GameJam.bank
   Name: GameJam
   StudioPath: bank:/GameJam
-  lastModified: 638214872337198053
+  lastModified: 638214899561800549
   FileSizes: []
   Exists: 1
 --- !u!114 &1915462684507759953
@@ -1080,7 +1080,7 @@ MonoBehaviour:
   Path: Assets/fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638214872352123988
+  lastModified: 638214899571421516
   FileSizes:
   - Name: 
     Value: 1608

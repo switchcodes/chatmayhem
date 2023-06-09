@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using FMODUnity;
@@ -558,5 +559,14 @@ namespace Player
         {
             dashPower += 2;
         }
+
+        public void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("XRocket"))
+            {
+                GetComponent<Health>().GetDamaged();
+            }
+        }
     }
+   
 }

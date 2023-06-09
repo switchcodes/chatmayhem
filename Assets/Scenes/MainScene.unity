@@ -16253,7 +16253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df566baa64e6aca43b5290e1d6f2cb66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dreamTimer: 140
+  dreamTimer: 30
   sceneIndex: 4
 --- !u!4 &1576029262
 Transform:

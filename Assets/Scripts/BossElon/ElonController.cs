@@ -1,9 +1,5 @@
-using Player;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using BossElon;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class ElonController : MonoBehaviour
 {
@@ -83,7 +79,7 @@ public class ElonController : MonoBehaviour
     {
         Vector3 worldPos = player.position;
         Vector3 dir = (worldPos - transform.position).normalized;
-        GameObject rocket = GameObject.Instantiate(xRocket, xRocketsSpawnPoint.position, Quaternion.identity);
+        GameObject rocket = Instantiate(xRocket, xRocketsSpawnPoint.position, Quaternion.identity);
         rocket.GetComponent<XRockets>().ShootXRockets(dir, xRocketsSpeed);
     }
     bool playerOnLeft() { return direction.x < 0; }
@@ -91,4 +87,10 @@ public class ElonController : MonoBehaviour
 
 
     bool playerDetected() { return distance < detectionRange; }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Fire")) return;
+        collision.gameObject.GetComponent<ElonHealth>().GetDamaged();
+    }
 }
